@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabela Stop</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    input {
+      width: 100%;
+      box-sizing: border-box;
+    }
+  </style>
+  <script>
+    let timer;
+
+    function sortear_letra() {
+      const letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      const letra = letras[Math.floor(Math.random() * letras.length)];
+      document.getElementById('letra_sorteada').innerText = letra;
+    }
+
+    function iniciar_contagem() {
+      const tempo = parseInt(document.getElementById('tempo').value);
+      clearInterval(timer);
+
+      if (isNaN(tempo)) {
+        alert('Por favor, insira um tempo válido.');
+        return;
+      }
+
+      let contador = tempo;
+      document.getElementById('contador').innerText = contador;
+
+      timer = setInterval(() => {
+        contador--;
+        document.getElementById('contador').innerText = contador;
+
+        if (contador <= 0) {
+          clearInterval(timer);
+          alert('Tempo esgotado!');
+        }
+      }, 1000);
+    }
+  </script>
+</head>
+<body>
+  <h1>Tabela para o jogo Stop</h1>
+  <button onclick="sortear_letra()">Sortear letra</button>
+  <p>Letra sorteada: <span id="letra_sorteada"></span></p>
+  <label for="tempo">Tempo (segundos): </label>
+  <input type="number" id="tempo" min="1">
+  <button onclick="iniciar_contagem()">Iniciar</button>
+  <p>Tempo restante: <span id="contador"></span></p>
+  
+  <table>
+    <tr>
+      <th>Categoria</th>
+      <th>Nome</th>
+      <th>Animal</th>
+      <th>Cor</th>
+      <th>País</th>
+      <th>Comida</th>
+    </tr>
+    <tr>
+      <td>Jogador 1</td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+    </tr>
+    <tr>
+      <td>Jogador 2</td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+    </tr>
+    <!-- Adicione mais linhas para outros jogadores, se necessário -->
+  </table>
+</body>
+</html>
